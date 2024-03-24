@@ -2,6 +2,7 @@
 
 DB-FX is a JavaFX-based application designed to manage and interact with a database system. It provides a user-friendly interface to perform CRUD (Create, Read, Update, Delete) operations on various entities like books, authors, and publishers.
 
+
 ## Features
 
 - **CRUD Operations**: Manage books, authors, and publishers with full create, read, update, and delete capabilities.
@@ -10,6 +11,11 @@ DB-FX is a JavaFX-based application designed to manage and interact with a datab
 - **Asynchronous Processing**: Utilizes background tasks to maintain a responsive UI during database operations. The application leverages advanced thread management features to handle database transactions and UI updates efficiently, ensuring a smooth user experience.
 - **Thread Management**: Incorporates advanced threading features to manage database connections and operations, preventing UI freezing and enhancing performance.
 - **Customizable UI**: A flexible user interface that adapts to different data management needs.
+
+Note: Database and stored procedure related files can be found in the `./db` directory
+- `procs-insertBookData.sql`
+- `procs-updateBookData.sql`
+- `schema.sql`
 
 ## Getting Started
 
@@ -63,5 +69,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Thank you to all the contributors who have helped to build this application.
 
 ---
-
-This updated README now includes the advanced threading features, emphasizing the application's efficiency and responsiveness.
