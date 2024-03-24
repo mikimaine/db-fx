@@ -28,6 +28,10 @@ public class AuthorTask extends DBTask<List<Author>> {
         }
     }
 
+    /**
+     * Called when the task has succeeded.
+     * @param event The event associated with the task's success.
+     */
     private void onSucceeded(WorkerStateEvent event) {
         if (event.getEventType() == WorkerStateEvent.WORKER_STATE_SUCCEEDED && onSuccessConsumer != null) {
             onSuccessConsumer.accept(getValue());

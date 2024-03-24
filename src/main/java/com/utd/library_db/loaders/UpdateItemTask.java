@@ -31,11 +31,19 @@ public class UpdateItemTask extends DBTask<Boolean> {
         return true;
     }
 
+    /**
+     * Sets up the onSuccess consumer and the succeeded event handler for the task.
+     * @param onSuccessConsumer The consumer to call on success.
+     */
     private void setupSuccessConsumer(Consumer<Boolean> onSuccessConsumer) {
         this.onSuccessConsumer = onSuccessConsumer;
         setOnSucceeded(this::onSucceeded);
     }
 
+    /**
+     * Called when the task has succeeded.
+     * @param event The event associated with the task's success.
+     */
     private void onSucceeded(WorkerStateEvent event) {
         if (event.getEventType() == WorkerStateEvent.WORKER_STATE_SUCCEEDED && onSuccessConsumer != null) {
             onSuccessConsumer.accept(getValue());
