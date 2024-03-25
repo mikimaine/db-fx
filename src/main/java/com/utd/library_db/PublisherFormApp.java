@@ -15,6 +15,13 @@ import javafx.stage.Stage;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 
+/**
+ * Represents a form application for adding or editing publisher information in the library database.
+ * This class provides a graphical user interface for users to input or modify publisher details such as name, address, etc.
+ * It interacts with the databaseExecutor to save the new or updated publisher information to the database.
+ * The class includes methods for initializing the form, handling user input, validating data, and submitting changes.
+ * Additionally, it utilizes callbacks or listeners to notify the calling controller about the success or failure of the operation.
+ */
 public class PublisherFormApp  {
 
     private final Consumer<Boolean> onSuccessAddPublisher;
@@ -25,6 +32,15 @@ public class PublisherFormApp  {
         this.onSuccessAddPublisher =onSuccessAddPublisher;
         showPublisherForm();
     }
+
+    /**
+     * Displays a modal form for adding a new publisher to the library database.
+     * The method creates a new Stage to host the form and initializes its modality as APPLICATION_MODAL for blocking interactions with other windows.
+     * Within the form, it includes fields for entering the publisher's name and phone number, along with a Save button to submit the data.
+     * Validation is performed on the input fields to ensure the entered data is valid before saving.
+     * If validation passes, the savePublisher() method is called to save the publisher information to the database, and the form is closed.
+     * The form is displayed using a GridPane layout to arrange the form elements in rows and columns.
+     */
     private void showPublisherForm() {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
