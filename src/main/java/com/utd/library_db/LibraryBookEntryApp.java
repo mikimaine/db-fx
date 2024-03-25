@@ -57,6 +57,7 @@ public class LibraryBookEntryApp extends Application {
         final boolean DEPTH_BUFFER = false;
 
         Scene scene = new Scene(borderPane, SCREEN_SIZE_WIDTH, SCREEN_SIZE_HEIGHT, DEPTH_BUFFER, getAntialiasing());
+
         loadAppIcon(stage);
         stage.setTitle("Library Book Entry");
         stage.setScene(scene);

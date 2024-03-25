@@ -1,5 +1,6 @@
 package com.utd.library_db;
 
+import atlantafx.base.layout.ModalBox;
 import atlantafx.base.theme.Styles;
 import atlantafx.base.theme.Tweaks;
 import com.utd.library_db.loaders.*;
@@ -17,6 +18,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
+
 import javafx.util.StringConverter;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -41,6 +43,8 @@ import java.util.function.Consumer;
 public class UIFormController {
     @FXML
     public DatePicker publicationDatePicker;
+    @FXML
+    public ModalBox modalPane;
     @FXML
     private TextField titleField;
     @FXML
@@ -138,6 +142,7 @@ public class UIFormController {
             }
         });
     }
+
     private void initializeLanguageComboBox() {
         languageComboBox.setItems(FXCollections.observableArrayList(Util.COMMON_LANGUAGES));
     }
@@ -154,8 +159,8 @@ public class UIFormController {
         editMenuItem.setOnAction(this::handleEditStateAction);
 
         MenuItem deleteMenuItem = createItem("Delete", new KeyCodeCombination(KeyCode.DELETE));
-        deleteMenuItem.setOnAction(actionEvent-> handleDelete());
-        contextMenu.getItems().addAll(editMenuItem,deleteMenuItem);
+        deleteMenuItem.setOnAction(actionEvent -> handleDelete());
+        contextMenu.getItems().addAll(editMenuItem, deleteMenuItem);
     }
 
     /**
@@ -310,7 +315,7 @@ public class UIFormController {
         AuthorTask authorTask = new AuthorTask(authors -> {
             this.authorsList = authors;
             Platform.runLater(() -> {
-                AutoCompletionBinding<Author> auto =TextFields.bindAutoCompletion(authorsField, FXCollections.observableArrayList(authors));
+                AutoCompletionBinding<Author> auto = TextFields.bindAutoCompletion(authorsField, FXCollections.observableArrayList(authors));
             });
         });
         databaseExecutor.execute(authorTask);
@@ -426,7 +431,7 @@ public class UIFormController {
      * otherwise, it clears the form fields on the JavaFX Application thread.
      */
     Consumer<Boolean> taskFinished = (Boolean result) -> {
-        if(!result) {
+        if (!result) {
             Alert validation = new Alert(Alert.AlertType.ERROR);
             validation.setContentText("There was an error to execute this operation. Please try again.");
             validation.show();
@@ -508,6 +513,16 @@ public class UIFormController {
         if (selected != null) {
             showConfirmationDialog(selected);
         }
+    }
+
+    /**
+     * Opens a new PublisherFormApp to allow the user to add a new publisher to the database.
+     * The method initializes the PublisherFormApp with the databaseExecutor and a callback function to handle the result.
+     * After the user finishes adding the publisher, the callback function triggers the update of the publishers list in the UI.
+     */
+    @FXML
+    private void addPublisher() {
+        new PublisherFormApp(databaseExecutor, (Boolean result) -> getPublishers());
     }
 
     /**

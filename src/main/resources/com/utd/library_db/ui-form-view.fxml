@@ -18,6 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import atlantafx.base.layout.ModalBox?>
 <BorderPane stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.utd.library_db.UIFormController">
     <top>
         <GridPane fx:id="formGridPane" hgap="10" vgap="10">
@@ -106,6 +107,7 @@
                 <HBox alignment="BASELINE_CENTER" spacing="25">
                     <Label text="Publisher" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                     <ComboBox fx:id="publisherComboBox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <Button onAction="#addPublisher">Add</Button>
                 </HBox>
 
             <HBox alignment="BASELINE_CENTER" spacing="25">
@@ -154,4 +156,6 @@
             <Label fx:id="statusLabel" text="Search Mode" />
         </HBox>
     </bottom>
+
+    <ModalBox fx:id="modalPane" />
 </BorderPane>
