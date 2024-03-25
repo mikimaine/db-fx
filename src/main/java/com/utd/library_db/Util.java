@@ -122,7 +122,7 @@ public class Util {
     public static String validateBookData(String isbn, String title, int[] authorIds, int publisherId, String language, String description) {
         StringBuilder errors = new StringBuilder();
 
-        if (isbn.isEmpty()) {
+        if (isbn == null || isbn.isEmpty()) {
             errors.append("ISBN cannot be empty.\n\n");
         } else if (!Util.validateISBN(isbn)) {
             errors.append("ISBN is invalid.\n\n");
