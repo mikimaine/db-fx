@@ -127,7 +127,7 @@ public class Util {
         } else if (!Util.validateISBN(isbn)) {
             errors.append("ISBN is invalid.\n\n");
         }
-        if (title.isEmpty()) {
+        if (title == null || title.isEmpty()) {
             errors.append("Title cannot be empty.\n\n");
         }
         if (authorIds.length == 0) {
@@ -139,7 +139,7 @@ public class Util {
         if (language == null || language.isEmpty()) {
             errors.append("Language must be specified.\n\n");
         }
-        if (description.isEmpty()) {
+        if (description==null || description.isEmpty()) {
             errors.append("Description cannot be empty.\n\n");
         }
 
